@@ -1,0 +1,8 @@
+{
+  "name": "NodeChat",
+  "version": "0.0.1",
+  "scripts": {
+    "stop": "echo not implemented",
+    "start": "node ./app.js"
+  }
+}
