@@ -9,11 +9,11 @@ module.exports.loginProcess = loginProcess;
 module.exports.chat = chat;
 
 function index(req,res) {
-	res.send('index');
+	res.render('index', {layout: 'layout', title: 'Home'});
 }
 
 function login(req, res) {
-	res.send('login')
+	res.render('login', {title: 'Login'});
 }
 
 function loginProcess(req, res) {
@@ -21,5 +21,5 @@ function loginProcess(req, res) {
 }
 
 function chat(req, res) {
-	res.send('chat');
+	res.render('chat', {title: 'Chat'});
 }

@@ -4,6 +4,11 @@ var app     = express();
 var errorHandlers = require('./middleware/errorhandlers');
 var routes = require('./routes');
 var log = require('./middleware/logger');
+var partials = require('express-partials');
+
+// Templating Engine
+app.set('view engine', 'ejs');
+app.set('view options', {defaultLayout: 'layout'});
 
 // Logger
 app.use(log.logger);
@@ -11,6 +16,8 @@ app.use(log.logger);
 // Static Files
 app.use(express.static(__dirname + '/static'));
 
+// Middleware & Routes
+app.use(partials());
 app.get('/', routes.index);
 app.get('/login', routes.login);
 app.post('/login', routes.loginProcess);
