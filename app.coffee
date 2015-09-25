@@ -8,6 +8,7 @@ partials = require('express-partials')
 cookieParser = require('cookie-parser')
 session = require('express-session')
 RedisStore = require('connect-redis')(session)
+bodyParser = require('body-parser')
 # Templating Engine
 app.set 'view engine', 'ejs'
 app.set 'view options', defaultLayout: 'layout'
@@ -26,6 +27,8 @@ app.use session(
     url: 'redis://localhost'
   )
 )
+app.use bodyParser.json()
+app.use bodyParser.urlencoded(extended: false)
 app.use partials()
 app.get '/', routes.index
 app.get '/login', routes.login
