@@ -7,6 +7,7 @@ log = require('./middleware/logger')
 partials = require('express-partials')
 cookieParser = require('cookie-parser')
 session = require('express-session')
+RedisStore = require('connect-redis')(session)
 # Templating Engine
 app.set 'view engine', 'ejs'
 app.set 'view options', defaultLayout: 'layout'
@@ -15,14 +16,16 @@ app.use log.logger
 # Static Files
 app.use express.static(__dirname + '/static')
 # Middleware & Routes
-app.use cookieParser()
-app.use session(secret: 'r-60_0uB|~0YQ34,}nzBZn=6k7Z93j')
-app.use (req, res, next) ->
-  if req.session.pageCount
-    req.session.pageCount++
-  else
-    req.session.pageCount = 1
-  next()
+app.use cookieParser('secret')
+# Sessions
+app.use session(
+  secret: 'secret'
+  saveUninitialized: true
+  resave: true
+  store: new RedisStore(
+    url: 'redis://localhost'
+  )
+)
 app.use partials()
 app.get '/', routes.index
 app.get '/login', routes.login

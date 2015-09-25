@@ -5,43 +5,39 @@
  */
 
 (function () {
-	var chat, index, login, loginProcess;
+  var chat, index, login, loginProcess;
 
-	index = function (req, res) {
-		res.clearCookie('Index Cookie');
-		res.render('index', {
-			layout: 'layout',
-			title: 'Home',
-			cookie: JSON.stringify(req.cookies),
-			session: JSON.stringify(req.session)
-		});
-	};
+  index = function (req, res) {
+    res.render('index', {
+      title: 'Home'
+    });
+  };
 
-	login = function (req, res) {
-		res.render('login', {
-			title: 'Login'
-		});
-	};
+  login = function (req, res) {
+    res.render('login', {
+      title: 'Login'
+    });
+  };
 
-	loginProcess = function (req, res) {
-		res.redirect('/');
-	};
+  loginProcess = function (req, res) {
+    res.redirect('/');
+  };
 
-	chat = function (req, res) {
-		res.render('chat', {
-			title: 'Chat'
-		});
-	};
+  chat = function (req, res) {
+    res.render('chat', {
+      title: 'Chat'
+    });
+  };
 
-	'use strict';
+  'use strict';
 
-	module.exports.index = index;
+  module.exports.index = index;
 
-	module.exports.login = login;
+  module.exports.login = login;
 
-	module.exports.loginProcess = loginProcess;
+  module.exports.loginProcess = loginProcess;
 
-	module.exports.chat = chat;
+  module.exports.chat = chat;
 
 }).call(this);
 

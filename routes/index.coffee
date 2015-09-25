@@ -3,12 +3,8 @@
 ###
 
 index = (req, res) ->
-  res.clearCookie 'Index Cookie'
   res.render 'index',
-    layout: 'layout'
     title: 'Home'
-    cookie: JSON.stringify(req.cookies)
-    session: JSON.stringify(req.session)
   return
 
 login = (req, res) ->
