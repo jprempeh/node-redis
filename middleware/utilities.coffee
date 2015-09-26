@@ -1,3 +1,10 @@
+config = require('../config')
+
+# Template Routes
+module.exports.templateRoutes = (req, res, next) ->
+  res.locals.routes = config.routes
+  next()
+
 module.exports.csrf = (req, res, next) ->
   res.locals.token = req.csrfToken()
   next()
@@ -18,7 +25,7 @@ module.exports.requireAuthentication = (req, res, next) ->
     next()
     return
   else
-    res.redirect '/login'
+    res.redirect config.routes.login
     return
 
 module.exports.auth = (username, password, session) ->

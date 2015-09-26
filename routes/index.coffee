@@ -1,7 +1,7 @@
 ###*
 # Routes
 ###
-
+config = require('../config')
 util = require('../middleware/utilities')
 
 index = (req, res) ->
@@ -19,7 +19,7 @@ loginProcess = (req, res) ->
     res.redirect '/chat'
   else
     req.flash 'error', 'Wrong Username or Password'
-    res.redirect '/login'
+    res.redirect config.routes.login
   return
 
 chat = (req, res) ->

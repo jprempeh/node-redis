@@ -5,7 +5,9 @@
  */
 
 (function () {
-  var chat, index, login, loginProcess, logout, util;
+  var chat, config, index, login, loginProcess, logout, util;
+
+  config = require('../config');
 
   util = require('../middleware/utilities');
 
@@ -29,7 +31,7 @@
       res.redirect('/chat');
     } else {
       req.flash('error', 'Wrong Username or Password');
-      res.redirect('/login');
+      res.redirect(config.routes.login);
     }
   };
 
