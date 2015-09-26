@@ -4,7 +4,13 @@
 	<meta charset="UTF-8">
 	<title><%= title %></title>
 	<link rel="stylesheet" href="css/cosmo.min.css">
-	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Compass -->
+	<link href="stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css"/>
+	<link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css"/>
+	<!--[if IE]>
+	<link href="stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css"/>
+	<![endif]-->
 </head>
 <body>
 <div class="container">
@@ -12,9 +18,19 @@
 		<div class="col-sm-4">
 			<h1>Facebook Chat</h1>
 		</div>
+		<div class="col-sm-4 col-sm-offset-4 top-margin">
+			<div class="pull-right">
+				<% if (isAuthenticated) { %>
+				<%- partial('partials/user-loggedin') %>
+				<% } else { %>
+				<%- partial('partials/user-loggedout') %>
+				<% } %>
+			</div>
 	</div>
-	<div class="row">
-		<%- body %>
+		<div class="row">
+			<%- body %>
+		</div>
 	</div>
+</div>
 </body>
 </html>

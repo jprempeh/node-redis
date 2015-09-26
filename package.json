@@ -16,5 +16,9 @@
     "express-session": "1.6.5",
     "redis": "0.10.1",
     "body-parser": "1.4.3"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-compass": "^1.0.3"
   }
 }

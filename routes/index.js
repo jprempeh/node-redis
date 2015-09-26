@@ -5,7 +5,7 @@
  */
 
 (function () {
-  var chat, index, login, loginProcess, util;
+  var chat, index, login, loginProcess, logout, util;
 
   util = require('../middleware/utilities');
 
@@ -37,7 +37,10 @@
     });
   };
 
-  'use strict';
+  logout = function (req, res) {
+    util.logOut(req.session);
+    return res.redirect('/');
+  };
 
   module.exports.index = index;
 
@@ -46,6 +49,8 @@
   module.exports.loginProcess = loginProcess;
 
   module.exports.chat = chat;
+
+  module.exports.logOut = logout;
 
 }).call(this);
 

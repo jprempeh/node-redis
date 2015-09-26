@@ -49,6 +49,7 @@ app.get '/', routes.index
 app.get '/login', routes.login
 app.post '/login', routes.loginProcess
 app.get '/chat', [util.requireAuthentication], routes.chat
+app.get '/logout', routes.logOut
 
 # Error Handlers
 app.use errorHandlers.error

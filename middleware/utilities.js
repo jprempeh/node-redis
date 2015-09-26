@@ -33,6 +33,11 @@
 		return isAuth;
 	};
 
+	module.exports.logOut = function (session) {
+		session.isAuthenticated = false;
+		return delete session.user;
+	};
+
 }).call(this);
 
 //# sourceMappingURL=utilities.js.map

@@ -28,3 +28,7 @@ module.exports.auth = (username, password, session) ->
     session.user =
       username: username
   isAuth
+
+module.exports.logOut = (session) ->
+  session.isAuthenticated = false
+  delete session.user

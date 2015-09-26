@@ -25,8 +25,13 @@ chat = (req, res) ->
   res.render 'chat', title: 'Chat'
   return
 
-'use strict'
+# Logout
+logout = (req, res) ->
+  util.logOut(req.session)
+  res.redirect('/')
+
 module.exports.index = index
 module.exports.login = login
 module.exports.loginProcess = loginProcess
 module.exports.chat = chat
+module.exports.logOut = logout
