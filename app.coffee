@@ -12,6 +12,7 @@ RedisStore = require('connect-redis')(session)
 bodyParser = require('body-parser')
 csrf = require('csurf')
 util = require('./middleware/utilities')
+flash = require('connect-flash')
 
 # Templating Engine
 app.set 'view engine', 'ejs'
@@ -43,6 +44,9 @@ app.use util.csrf
 
 # Authentication
 app.use util.authenticated
+
+# Flash Messages
+app.use flash()
 
 # Routes
 app.get '/', routes.index

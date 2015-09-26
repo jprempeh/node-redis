@@ -17,7 +17,8 @@
 
   login = function (req, res) {
     res.render('login', {
-      title: 'Login'
+      title: 'Login',
+      message: req.flash('error')
     });
   };
 
@@ -27,6 +28,7 @@
     if (isAuth) {
       res.redirect('/chat');
     } else {
+      req.flash('error', 'Wrong Username or Password');
       res.redirect('/login');
     }
   };

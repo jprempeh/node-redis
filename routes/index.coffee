@@ -10,7 +10,7 @@ index = (req, res) ->
   return
 
 login = (req, res) ->
-  res.render 'login', title: 'Login'
+  res.render 'login', title: 'Login', message: req.flash 'error'
   return
 
 loginProcess = (req, res) ->
@@ -18,6 +18,7 @@ loginProcess = (req, res) ->
   if isAuth
     res.redirect '/chat'
   else
+    req.flash 'error', 'Wrong Username or Password'
     res.redirect '/login'
   return
 
