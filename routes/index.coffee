@@ -2,6 +2,8 @@
 # Routes
 ###
 
+util = require('../middleware/utilities')
+
 index = (req, res) ->
   res.render 'index',
     title: 'Home'
@@ -12,7 +14,11 @@ login = (req, res) ->
   return
 
 loginProcess = (req, res) ->
-  res.redirect '/'
+  isAuth = util.auth req.body.username, req.body.password, req.session
+  if isAuth
+    res.redirect '/chat'
+  else
+    res.redirect '/login'
   return
 
 chat = (req, res) ->

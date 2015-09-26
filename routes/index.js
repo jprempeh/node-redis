@@ -5,7 +5,9 @@
  */
 
 (function () {
-  var chat, index, login, loginProcess;
+  var chat, index, login, loginProcess, util;
+
+  util = require('../middleware/utilities');
 
   index = function (req, res) {
     res.render('index', {
@@ -20,7 +22,13 @@
   };
 
   loginProcess = function (req, res) {
-    res.redirect('/');
+    var isAuth;
+    isAuth = util.auth(req.body.username, req.body.password, req.session);
+    if (isAuth) {
+      res.redirect('/chat');
+    } else {
+      res.redirect('/login');
+    }
   };
 
   chat = function (req, res) {
