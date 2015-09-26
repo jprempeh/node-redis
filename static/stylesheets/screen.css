@@ -1,0 +1,39 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 9, ../sass/screen.sass */
+.rotate-right {
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+/* line 12, ../sass/screen.sass */
+.facebook {
+  background: #3b5998;
+  color: #ffffff;
+}
+
+/* line 16, ../sass/screen.sass */
+.google {
+  background: #dd4b39;
+  color: #ffffff;
+}
+
+/* line 21, ../sass/screen.sass */
+.top-margin {
+  margin-top: 20px;
+}
+
+/* line 24, ../sass/screen.sass */
+.rotate-right {
+  transform: rotate(90deg);
+}
+
+/* line 27, ../sass/screen.sass */
+.small-image {
+  width: 640px;
+  height: auto;
+}
