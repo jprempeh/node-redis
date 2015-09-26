@@ -21,7 +21,7 @@ module.exports.authenticated = (req, res, next) ->
 
 # Check to see if someone is authenticated
 module.exports.requireAuthentication = (req, res, next) ->
-  if(req.session.isAuthenticated)
+  if req.session.isAuthenticated
     next()
     return
   else
