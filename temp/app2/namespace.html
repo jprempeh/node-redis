@@ -2,8 +2,7 @@
 <html>
 <head>
 	<title>Ping Pong</title>
-	<script src="../socket.io.js"></script>
-	<script src="namespace.js"></script>
+	<script src="socket.io.js"></script>
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
 	<style>
 		.areas {
@@ -68,8 +67,21 @@
 				socketio.emit('privatePing', {socket: e.target.getAttribute('data-socket')});
 			}
 		});
-	}
 
+		socketio.on('join', function (user) {
+			users.append(createButton(user));
+		});
+
+		socketio.on('ping', function(user) {
+			if (user.priv === undefined) {
+				events.append('<li>Ping from ' + user.username + '</li>');
+			} else {
+				events.append('<li>Ping from ' + user.username + ' sent directly to you!</li>');
+			}
+		});
+	}
+	wireEvents(defaultArea, socket);
+	wireEvents(vipArea, vip)
 </script>
 </body>
 </html>
