@@ -32,4 +32,40 @@ function CreateUser(username, name, cb) {
 		);
 	});
 }
+
+function GetUserID(username, name, cb) {
+	client.get('user:' + username, function (err, userid) {
+		if(userid) {
+			cb(userid);
+		} else {
+			CreateUser(username, name, function(new_user) {
+				cb(new_user);
+			});
+		}
+	});
+}
+
+// Storing Message
+function AddMessage(message, userid, cb) {
+	client.incr('next:message:id', function(err, id){
+		flow.exec(
+			function() {
+				var mess_id = 'message:' + id;
+				client.set(mess_id, message, this.MULTI());
+				client.set(mess_id + ':user', userid, this.MULTI());
+				client.lpush('messages', id, this.MULTI());
+			}, function() {
+				cb(id);
+			}
+		);
+	});
+}
+
+// Fetching Messages
+function FetchMessage(id, cb) {
+	client.get('message:' + id, function(err, message) {
+		client.get('message:')
+	})
+}
+
 app.listen(8003);

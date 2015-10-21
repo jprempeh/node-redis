@@ -5,11 +5,12 @@
   io = require('socket.io').listen(4000);
 
   io.of('/vip').on('connection', function(socket) {
-    socket.on('join', function(data) {});
-    socket.username = data.username;
-    socket.broadcast.emit('join', {
-      username: data.username,
-      socket: socket.id
+    socket.on('join', function(data) {
+      socket.username = data.username;
+      return socket.broadcast.emit('join', {
+        username: data.username,
+        socket: socket.id
+      });
     });
     socket.on('ping', function() {
       return socket.broadcast.emit('ping', {
@@ -23,8 +24,6 @@
       });
     });
   });
-
-  io.of('/vip');
 
 }).call(this);
 
