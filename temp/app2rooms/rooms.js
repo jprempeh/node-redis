@@ -7,45 +7,28 @@
   io.sockets.on('connection', function(socket) {
     socket.on('join', function(data) {
       socket.username = data.username;
-      return socket.broadcast.emit('join', {
+      socket.join(data.room);
+      return socket.broadcast.to(data.room).emit('join', {
         username: data.username,
-        socket: socket.id
+        socket: socket.id,
+        room: data.room
       });
     });
-    socket.on('ping', function() {
-      return socket.broadcast.emit('ping', {
-        username: socket.username
+    socket.on('ping', function(data) {
+      return socket.broadcast.to(data.room).emit('ping', {
+        username: socket.username,
+        room: data.room
       });
     });
     return socket.on('privatePing', function(data) {
       return io.sockets.connected[data.socket].emit('ping', {
         username: socket.username,
-        priv: true
-      });
-    });
-  });
-
-  io.of('/vip').on('connection', function(socket) {
-    socket.on('join', function(data) {
-      socket.username = data.username;
-      return socket.broadcast.emit('join', {
-        username: data.username,
-        socket: socket.id
-      });
-    });
-    socket.on('ping', function() {
-      return socket.broadcast.emit('ping', {
-        username: socket.username
-      });
-    });
-    return socket.on('privatePing', function(data) {
-      return io.of('/vip').connected[data.socket].emit('ping', {
-        username: socket.username,
-        priv: true
+        priv: true,
+        room: data.room
       });
     });
   });
 
 }).call(this);
 
-//# sourceMappingURL=namespace.js.map
+//# sourceMappingURL=rooms.js.map
